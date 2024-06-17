@@ -1,12 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>CHM GOOGLE MAP</title>
-</head>
-<body>
-
-<div id="map"></div>
-
-</body>
-</html>
-
+<!DOCTYPE html> 
+<html> 
+<head> 
+	<style> 
+	#map { 
+		height: 400px; 
+		width: 100%; 
+	} 
+	</style> 
+</head> 
+<body> 
+	<p>My Google Maps Demo</p> 
+	<div id="map"></div> 
+	<script> 
+	function initMap() { 
+		var test= {lat: -25.363, lng: 131.044}; 
+		var map = new google.maps.Map(document.getElementById('map'), { 
+		zoom: 4, 
+		center: test 
+		}); 
+		var marker = new google.maps.Marker({ 
+		position: test, 
+		map: map 
+		}); 
+	} 
+	</script> 
+	<script async defer 
+	src= 
+"https://maps.googleapis.com/maps/api/js?key=AIzaSyDdffbmty7b6u0R6qEhIH88IJm_rcj_wcE&callback=initMap"> 
+	</script> 
+</body> 
+</html> 
