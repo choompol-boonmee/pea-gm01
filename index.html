@@ -14,14 +14,40 @@
 	<script> 
 	function initMap() { 
 		var test= {lat: 13.6272, lng: 101.0326 }; 
-		var map = new google.maps.Map(document.getElementById('map'), { 
-		zoom: 12, 
-		center: test,
+    
+    var locations = [
+      ['C', 13.6319, 101.0371, 3],
+      ['B', 13.6302, 101.0359, 2],
+      ['A', 13.6280, 101.0347, 1]
+    ];		
+    
+    var map = new google.maps.Map(document.getElementById('map'), { 
+		  zoom: 12, 
+		  center: test,
 		}); 
+    
+    var infowindow = new google.maps.InfoWindow();
+    var marker, i;
+    
 		var marker = new google.maps.Marker({ 
-		position: test, 
-		map: map 
+		  position: test, 
+		  map: map 
 		}); 
+
+    for (i = 0; i < locations.length; i++) {
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map,
+      })
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i))
+    }
+    
 	} 
 	</script> 
 	<script async defer 
